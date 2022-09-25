@@ -8,20 +8,18 @@ export async function readAllMD(source: string, target: string) {
       const markdown = await Deno.readTextFile(file.path);
       const markup = Marked.parse(markdown);
       await saveMarkDownFile(markup.content, file.name, target);
-      console.log(markup);
+      console.log("markup: ", markup);
     }
   }
 }
 
 function pageTemplate(html: string) {
-  return `/** @jsx h */
+  return `
     import { h } from "preact";
-    import SearchBar from "../../islands/SearchBar.tsx"
     
     export default function Page() {
       return (
         <div style="padding: 10px; width: 90%; margin: 0 auto;">
-            <SearchBar ></SearchBar>
             ${html}
         </div>
       );
@@ -61,9 +59,7 @@ async function saveMarkDownFile(
     console.log("Target file doesn't yet exists....");
   }
 
-  /*
-    if(targetHash != sourceHash){
-        await Deno.writeTextFile(destination, content)
-    }
-    */
+  if (targetHash != sourceHash) {
+    await Deno.writeTextFile(destination, content);
+  }
 }
