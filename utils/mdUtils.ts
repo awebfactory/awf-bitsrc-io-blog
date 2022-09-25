@@ -1,6 +1,7 @@
 import { walk } from "$std/fs/mod.ts";
 import { encode } from "$std/encoding/hex.ts";
 import { Marked } from "markdown";
+import { Search } from "./search.ts";
 
 export async function readAllMD(source: string, target: string) {
   for await (const file of walk(source)) {
@@ -15,12 +16,12 @@ export async function readAllMD(source: string, target: string) {
 
 function pageTemplate(html: string) {
   return `
-    import { h } from "preact";
-    
+    import SearchBar from "../../islands/SearchBar.tsx"
     export default function Page() {
       return (
         <div style="padding: 10px; width: 90%; margin: 0 auto;">
-            ${html}
+         <SearchBar ></SearchBar>
+          ${html}
         </div>
       );
     }
@@ -35,6 +36,11 @@ async function saveMarkDownFile(
   //rename the file from .md to .tsx
   let fnameParts = fname.split(".");
   fnameParts.pop();
+
+  const fileUrl = "/blog/" + fnameParts.join(".");
+  const mySearch = Search.getInstance();
+  mySearch.indexElement(content, fileUrl);
+
   fnameParts.push("tsx");
 
   const destination = targetFolder + "/" + fnameParts.join(".");

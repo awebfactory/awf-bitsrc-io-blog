@@ -1,5 +1,6 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { listPosts, Post } from "../utils/posts.ts";
+import SearchBar from "../islands/SearchBar.tsx";
 import Counter from "../islands/Counter.tsx";
 
 interface Posts {
@@ -19,6 +20,9 @@ export default function Home(props: PageProps<Posts>) {
     <div class="p-4 mx-auto max-w-screen-md">
       <div class="px-4 mx-auto max-w-screen-md">
         <h1 class="font-bold text-5xl mt-12">Blogit</h1>
+        <div class="my-4">
+          <SearchBar />
+        </div>
         <ul class="mt-8">
           {posts.map((post) => <PostEntry post={post} />)}
         </ul>

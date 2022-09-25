@@ -1,10 +1,10 @@
 
-    import { h } from "preact";
-    
+    import SearchBar from "../../islands/SearchBar.tsx"
     export default function Page() {
       return (
         <div style="padding: 10px; width: 90%; margin: 0 auto;">
-            <h1 id="this-is-another-page">This is another page</h1>
+         <SearchBar ></SearchBar>
+          <h1 id="this-is-another-page">This is another page</h1>
 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. <strong>Etiam</strong> ultricies
 dolor tellus, a commodo arcu iaculis ew. <em>Praesent</em> dapibus ultrices tempor.
 Vestibulum id justo ut ipsum euismod iaculis eget ac nunc. Morbi neque est,
