@@ -1,13 +1,12 @@
 import { Handlers, PageProps } from "$fresh/server.ts";
 import { listPosts, Post } from "../utils/posts.ts";
 import Counter from "../islands/Counter.tsx";
-import { State } from "../utils/state.ts";
 
 interface Posts {
   posts: Post[];
 }
 
-export const handler: Handlers<Posts, State> = {
+export const handler: Handlers<Posts> = {
   async GET(_req, ctx) {
     const posts = await listPosts();
     return ctx.render({ ...ctx.state, posts });
