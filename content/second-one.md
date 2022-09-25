@@ -1,2 +1,3 @@
+# This is now my second blog post
 
-# This is my second blog post
+The time has come to delve deeper into markdown
