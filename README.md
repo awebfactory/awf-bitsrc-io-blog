@@ -25,7 +25,7 @@ So in this repo, we're following the bitsrc article, with atomic commits
 
 [Clone and then simply] Start the project:
 
-```
+```bash
 deno task start
 ```
 
